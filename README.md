@@ -42,6 +42,35 @@ Download and install the Android NDK, and follow the instructions to create a st
 
 Now that you've built the dependencies, you can run `ndk-build` in your `jni/` directory and build the `ViewdoPangoRenderer` as well as the JNI wrapper.
 
+Using a Mac
+-----------
+
+Building for Android using a Mac requires a few extra steps.
+
+First make sure the NDK standalone toolchain is built, using:
+
+	cd /Users/jbovet/Library/Android/sdk/ndk-bundle/build/tools
+	sudo ./make-standalone-toolchain.sh --platform=android-9 --install-dir=/usr/src/ndk-standalone-9 --ndk-dir=/Users/jbovet/Library/Android/sdk/ndk-bundle --arch=arm --system=darwin-x86_64
+	
+	export ANDROID_NDK=/Users/jbovet/Library/Android/sdk/ndk-bundle
+	export PATH=$PATH:/usr/src/ndk-standalone-9/bin/
+
+Install the required packages:
+
+	brew install pkg-config
+	brew install gettext
+	brew install glib
+	
+	export PATH=$PATH:/usr/local/Cellar/glib/2.46.2/bin
+	export PATH=$PATH:/usr/local/Cellar/gettext/0.19.6/bin
+
+
+And change these lines in the build file:
+
+	export LDFLAGS="-L$LP_OUT/lib -L/usr/local/opt/gettext/lib"
+	export CPPFLAGS=-I/usr/local/opt/gettext/include
+
+
 Building for Linux
 ==================
 

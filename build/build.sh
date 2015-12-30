@@ -10,7 +10,7 @@ export LP_WORK=`pwd`/work
 export COMMON_FLAGS="-fPIC -I$LP_OUT/include -O3 -mfloat-abi=softfp -mfpu=vfpv3-d16 -mcpu=cortex-a9 -mthumb"
 export CFLAGS="-std=gnu99 $COMMON_FLAGS -I$LP_OUT/lib/libffi-3.1/include"
 export CXXFLAGS="-std=c++11 $COMMON_FLAGS"
-export LDFLAGS="-L$LP_OUT/lib"
+export LDFLAGS="-L$LP_OUT/lib -L/usr/local/opt/gettext/lib"
 
 export AR=arm-linux-androideabi-ar
 export LD=arm-linux-androideabi-ld
